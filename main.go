@@ -46,7 +46,7 @@ func cashIn(newBalance float32) (string, error) {
 
 	f, _ := strconv.ParseFloat(newBalanc, 32)
 
-	message := "your money was desposited successfully"
+	message := "your money was desposited successfully!"
 
 	return err / message
 }
