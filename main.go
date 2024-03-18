@@ -2,27 +2,26 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"strconv"
 )
 
 var balance float32
 
 func main() {
+
+	fmt.Printf("welcome to your account, what do you want? \n 1. cash in \n 2. cash out \n 3. get balance \n")
 	choice := ""
 
-	const (
-		cashIn  = 1
-		cashOut = 2
-		balance = 3
-	)
-
-	f, _ := strconv.ParseFloat(cashIn(), 64)
+	fmt.Scanln(&choice)
 
 	switch choice {
-	case cashIn:
+	case "1":
 		cashIn()
-
+	case "2":
+		cashOut()
+	case "3":
+		getBalance()
+	default:
+		fmt.Println("invalid choice (1, 2, 3)")
 	}
 
 }
@@ -31,22 +30,31 @@ func getBalance() float32 {
 	return balance
 }
 
-func cashIn(newBalance float32) (string, error) {
+func cashIn() {
+
+	var newBalance float32
+
 	fmt.Println("How much money u wanna deposit? ")
 	fmt.Scanln(&newBalance)
 
 	if newBalance < 5 {
-		fmt.Print("you can't desposit less that $4")
+		fmt.Print("you can't desposit less than $5")
+	} else {
+		balance += newBalance
+		fmt.Println("your money was desposited successfully!")
+		fmt.Println("your current balance is:", newBalance)
 	}
-	balance += newBalance
+}
 
-	if err != nil {
-		log.Fatal("something went wrong")
+func cashOut() {
+	var lessBalance float32
+
+	fmt.Println("how much do you want to withdraw")
+	fmt.Scanln(&lessBalance)
+
+	if lessBalance < 2 {
+		fmt.Println("you can't withdraw less than $2")
+	} else {
+		balance -= lessBalance
 	}
-
-	f, _ := strconv.ParseFloat(newBalanc, 32)
-
-	message := "your money was desposited successfully!"
-
-	return err / message
 }
